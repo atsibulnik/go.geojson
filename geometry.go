@@ -195,7 +195,9 @@ func decodeGeometry(g *Geometry, object map[string]interface{}) error {
 
 	bb, err := decodeBoundingBox(object["bbox"])
 	if err != nil {
-		return err
+		// Bounding box element is optional so ignore errors
+		// and continue decoding
+		g.BoundingBox = nil
 	}
 	g.BoundingBox = bb
 
